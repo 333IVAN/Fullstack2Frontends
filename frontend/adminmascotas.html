@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Mascotas Registradas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-panel-admin">
+        <aside class="menu-lateral">
+            <a href="./index.html" class="menu-lateral-logo">
+                <img src="img/logo2.png" alt="Logo Kiwi Ayuda">
+                <span>Kiwi Ayuda</span>
+            </a>
+
+            <ul class="menu-lateral-lista">
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Solicitudes de donación</a></li>
+                <li><a href="">Solicitudes de adopción</a></li>
+                <li><a href="">Solicitudes de contacto</a></li>
+                <li><a href="">Inventario</a></li>
+                <li><a href="">Reportes</a></li>
+                <li><a href="./adminusuarios.html">Usuarios</a></li>
+                <li><a href="./adminmascotas.html">Mascotas</a></li>
+            </ul>
+
+            <div class="menu-lateral-espaciador">
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Configuración</a></li>
+                    <li><a href="">Buscar</a></li>
+                    <li><a href="">Ayuda</a></li>
+                </ul>
+
+                <hr class="menu-lateral-linea-punteada">
+
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Perfil</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="contenido-panel-admin">
+            <h1 class="titulo-saludo-admin">Mascotas registradas</h1>
+            
+            <div style="margin-bottom: 20px; text-align: right;">
+                <a href="./agregarmascota.html" class="btn-estandar" style="text-decoration: none; display: inline-block; padding: 10px 20px;">+ Agregar mascota</a>
+            </div>
+
+            <div class="bloque-contenido-vacio">
+                <table border="1" style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f3e8ff; color: #793881;">
+                            <th style="padding: 10px;">Fecha</th>
+                            <th style="padding: 10px;">ID</th>
+                            <th style="padding: 10px;">Nombre</th>
+                            <th style="padding: 10px;">Especie</th>
+                            <th style="padding: 10px;">Raza</th>
+                            <th style="padding: 10px;">Estado</th>
+                            <th style="padding: 10px;">Descripción</th>
+                            <th style="padding: 10px; text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-mascotas-body">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        "use strict";
+
+        let mascota_base = {
+            id: 0,
+            fecha: "01/01/2026",
+            nombre: "Sin nombre",
+            especie: "Desconocida",
+            raza: "Mestizo",
+            edad: "Desconocida",
+            vacunas: "No",
+            estado: "Sin hogar",
+            descripcion: "Sin descripción disponible.",
+            hogarTemporal: "Av. Pajaritos 1234, Maipú, Santiago",
+            imagen: "img/perro.png"
+        };
+
+        let m1 = Object.create(mascota_base); m1.id = 1; m1.fecha = "10/01/2026"; m1.nombre = "Max"; m1.especie = "Perro"; m1.raza = "Quiltro"; m1.estado = "En hogar temporal"; m1.descripcion = "Macho, 2 años. Juguetón, enérgico y muy amigable con niños.";
+        let m2 = Object.create(mascota_base); m2.id = 2; m2.fecha = "12/01/2026"; m2.nombre = "Luna"; m2.especie = "Gato"; m2.raza = "Mestizo"; m2.estado = "En proceso adop."; m2.descripcion = "Hembra, 1 año. Tranquila, cariñosa y acostumbrada a vivir en departamento.";
+        let m3 = Object.create(mascota_base); m3.id = 3; m3.fecha = "15/01/2026"; m3.nombre = "Rocky"; m3.especie = "Perro"; m3.raza = "Doberman"; m3.estado = "Sin hogar"; m3.descripcion = "Macho, 3 años. Protector, obediente y le encanta salir a pasear al parque.";
+        let m4 = Object.create(mascota_base); m4.id = 4; m4.fecha = "20/01/2026"; m4.nombre = "Mimi"; m4.especie = "Gato"; m4.raza = "Siames"; m4.estado = "Adoptada"; m4.descripcion = "Hembra, 6 meses. Muy curiosa, sociable y le encanta jugar con pelotas de lana.";
+        let m5 = Object.create(mascota_base); m5.id = 5; m5.fecha = "02/02/2026"; m5.nombre = "Oliver"; m5.especie = "Gato"; m5.raza = "Mestizo"; m5.estado = "En hogar temporal"; m5.descripcion = "Macho, 2 años. Independiente, cariñoso a sus tiempos y esterilizado.";
+        let m6 = Object.create(mascota_base); m6.id = 6; m6.fecha = "10/02/2026"; m6.nombre = "Toby"; m6.especie = "Perro"; m6.raza = "Golden Retriever"; m6.estado = "En proceso adop."; m6.descripcion = "Macho, 4 años. Noble, ideal para familias senior o casas amplias.";
+        let m7 = Object.create(mascota_base); m7.id = 7; m7.fecha = "18/02/2026"; m7.nombre = "Bella"; m7.especie = "Perro"; m7.raza = "Quiltro"; m7.estado = "Sin hogar"; m7.descripcion = "Hembra, 1.5 años. Activa, sociable con otros perros y muy cariñosa.";
+        let m8 = Object.create(mascota_base); m8.id = 8; m8.fecha = "25/02/2026"; m8.nombre = "Simba"; m8.especie = "Gato"; m8.raza = "Angora"; m8.estado = "Adoptada"; m8.descripcion = "Macho, 8 meses. Dulce, ronroneador y en busca de un hogar tranquilo.";
+
+        let catalogoMascotas = [m1, m2, m3, m4, m5, m6, m7, m8];
+
+        let tbody = document.getElementById("tabla-mascotas-body");
+
+        catalogoMascotas.forEach(function(m) {
+            let fila = `
+                <tr>
+                    <td style="padding: 10px;">${m.fecha}</td>
+                    <td style="padding: 10px;">${m.id}</td>
+                    <td style="padding: 10px;">${m.nombre}</td>
+                    <td style="padding: 10px;">${m.especie}</td>
+                    <td style="padding: 10px;">${m.raza}</td>
+                    <td style="padding: 10px;">${m.estado}</td>
+                    <td style="padding: 10px;">${m.descripcion}</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="./editarmascota.html?id=${m.id}" class="btn-estandar" style="text-decoration: none; padding: 6px 12px; font-size: 0.85rem; display: inline-block;">Editar</a>
+                    </td>
+                </tr>
+            `;
+            tbody.innerHTML += fila;
+        });
+
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

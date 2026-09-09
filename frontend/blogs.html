@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículos y Noticias - Kiwi Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-home">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>Novedades y Artículos</h1>
+                <p>Mantente informado sobre nuestras acciones de rescate, consejos de cuidado animal y las últimas noticias de la comunidad.</p>
+            </div>
+        </section>
+
+        <main id="ayudanos">
+            <div style="text-align: center;">
+                <h1 style="font-size: 1.8rem; color: #793881; font-weight: bold; margin-bottom: 5px;">Últimas Publicaciones</h1>
+                <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 20px;">Explora el contenido preparado por nuestro equipo para promover el bienestar animal.</p>
+            </div>
+
+            <div class="lista-articulos">
+                
+                <article class="tarjeta-articulo">
+                    <div class="contenido-articulo">
+                        <h2 class="titulo-articulo">Fiestas patrias aperradas</h2>
+                        <span class="etiqueta-articulo">Noticia</span>
+                        <p class="resumen-articulo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <a href="no hay" class="btn-estandar" style="display: inline-block; width: max-content; padding: 6px 14px; font-size: 0.85rem; margin-top: auto;">Ver más información</a>
+                    </div>
+                    <div class="contenedor-imagen-articulo">
+                        <img src="https://4knines.com/cdn/shop/articles/Important_Trail_Etiquette_You_Should_Know_When_Walking_Your_Dog_-_featured.jpg?v=1548138777" alt="Imagen Noticia">
+                        <div class="difuminado-imagen"></div>
+                    </div>
+                </article>
+
+                <article class="tarjeta-articulo">
+                    <div class="contenido-articulo">
+                        <h2 class="titulo-articulo">Consejos para adoptar en departamento</h2>
+                        <span class="etiqueta-articulo">Blog</span>
+                        <p class="resumen-articulo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                    </div>
+                    <div class="contenedor-imagen-articulo">
+                        <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/05/Female_Smartphone_Walking_1296x728-header-1296x728.jpg?w=1155&h=1528" alt="Imagen Blog">
+                        <div class="difuminado-imagen"></div>
+                    </div>
+                </article>
+
+                <article class="tarjeta-articulo">
+                    <div class="contenido-articulo">
+                        <h2 class="titulo-articulo">La importancia de la vacunación y esterilización temprana</h2>
+                        <span class="etiqueta-articulo">Artículo</span>
+                        <p class="resumen-articulo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+                        <a href="no hay" class="btn-estandar" style="display: inline-block; width: max-content; padding: 6px 14px; font-size: 0.85rem; margin-top: auto;">Ver más información</a>
+                    </div>
+                    <div class="contenedor-imagen-articulo">
+                        <img src="https://www.shutterstock.com/image-photo/cute-dachshund-looking-next-food-600nw-2645459067.jpg" alt="Imagen Artículo">
+                        <div class="difuminado-imagen"></div>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contactanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <script>
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

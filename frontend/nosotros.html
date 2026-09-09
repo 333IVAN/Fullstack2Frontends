@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Kiwi Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-nosotros">
+        <section class="banner-index">
+            <div class="conetnido-banner">
+                <h1>Sobre Nosotros</h1>
+                <p>Conoce más sobre nuestra misión y las personas que hacen posible este proyecto.</p>
+            </div>
+        </section>
+
+        <main style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+            <section style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #f3e8ff;">
+                <h2 style="color: #793881; font-size: 1.5rem; margin-bottom: 15px; font-family: 'Comfortaa', cursive;">Nuestra Misión</h2>
+                <p style="color: #4b5563; line-height: 1.6; font-size: 1.05rem;">
+                    Somos una fundación independiente dedicada a facilitar la adopción de mascotas sin hogar, conectando animales rescatados con familias comprometidas a brindarles una segunda oportunidad. Aceptamos donaciones de insumos para mantenernos vigentes en nuestra misión, ya que somos una fundación sin fines de lucro.
+                </p>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #f3e8ff; color: #6b7280; font-size: 0.95rem;">
+                    <p style="margin: 5px 0;"><strong>Correo de contacto:</strong> contactokiwi@kiwiayuda.cl</p>
+                    <p style="margin: 5px 0;"><strong>Teléfono:</strong> +56 9 1234 5678</p>
+                </div>
+            </section>
+
+            <section style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #f3e8ff;">
+                <h2 style="color: #793881; font-size: 1.5rem; margin-bottom: 15px; font-family: 'Comfortaa', cursive;">Desarrolladores</h2>
+                <p style="color: #4b5563; line-height: 1.6; font-size: 1.05rem;">
+                    <strong>Iván González</strong> — Estudiante de Ingeniería en Informática.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contáctanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <script>
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+
+</html>

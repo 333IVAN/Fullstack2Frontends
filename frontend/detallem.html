@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Mascota - Kiwi Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-detalle">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1 id="banner-titulo">Detalle de mascota</h1>
+                <p>Conoce más sobre su historia, personalidad y requisitos para la adopción.</p>
+            </div>
+        </section>
+
+        <div class="formulario-card" style="max-width: 1000px; width: 90%; margin: 30px auto; padding: 35px;">
+            <div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 25px; flex-wrap: wrap;">
+                
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <img id="thumb-principal" src="img/perro.png" alt="Miniatura 1" onclick="cambiarImagenPrincipal(this.src)" style="width: 75px; height: 75px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid #793881;">
+                    <img id="thumb-2" src="img/perro.png" alt="Miniatura 2" onclick="cambiarImagenPrincipal(this.src)" style="width: 75px; height: 75px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid #ccc;">
+                    <img id="thumb-3" src="img/perro.png" alt="Miniatura 3" onclick="cambiarImagenPrincipal(this.src)" style="width: 75px; height: 75px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid #ccc;">
+                    <img id="thumb-4" src="img/perro.png" alt="Miniatura 4" onclick="cambiarImagenPrincipal(this.src)" style="width: 75px; height: 75px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid #ccc;">
+                </div>
+
+                <div style="flex: 1; min-width: 280px; text-align: center;">
+                    <img id="det-imagen" src="img/perro.png" alt="Mascota" style="max-width: 100%; height: 350px; object-fit: cover; border-radius: 12px; display: block; margin: 0 auto 15px auto;">
+                </div>
+
+                <div style="flex: 1.2; min-width: 280px;">
+                    <h2 id="det-nombre" style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 2.2rem; margin: 0 0 15px 0;">Mascota</h2>
+                    
+                    <div style="background-color: #f9fafb; padding: 20px; border-radius: 10px; border: 1px solid #f3f4f6; margin-bottom: 20px;">
+                        <p style="color: #4b5563; font-size: 1rem; margin: 8px 0;"><strong>Especie:</strong> <span id="det-especie">-</span></p>
+                        <p style="color: #4b5563; font-size: 1rem; margin: 8px 0;"><strong>Raza:</strong> <span id="det-raza">-</span></p>
+                        <p style="color: #4b5563; font-size: 1rem; margin: 8px 0;"><strong>Edad:</strong> <span id="det-edad">-</span></p>
+                        <p style="color: #4b5563; font-size: 1rem; margin: 8px 0;"><strong>Vacunas al día:</strong> <span id="det-vacunas">-</span></p>
+                        <p style="color: #4b5563; font-size: 1rem; margin: 8px 0;"><strong>Hogar Temporal:</strong> <span id="det-hogar">-</span></p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+                        <button onclick="solicitarAdopcion()" class="btn-estandar" style="width: 240px; padding: 10px 12px; margin: 0; box-sizing: border-box; text-align: center; white-space: nowrap;">Solicitar adopción</button>
+                        <a href="./adopcion.html" class="btn-estandar" style="display: inline-block; width: 240px; padding: 10px 12px; margin: 0; box-sizing: border-box; text-align: center; text-decoration: none; white-space: nowrap;">Volver al catálogo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 15px; margin-bottom: 30px;">
+                <h3 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.3rem; margin-bottom: 10px;">Sobre la mascota y requisitos de adopción</h3>
+                <p id="det-descripcion" style="color: #4b5563; font-size: 1rem; line-height: 1.7; text-align: left; margin: 0;">
+                    Cargando información de la mascota...
+                </p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 35px 0;">
+
+            <div style="text-align: center; margin-bottom: 25px;">
+                <h3 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.6rem; margin: 0 0 5px 0;">Otras Mascotas en Adopción</h3>
+                <p style="color: #6b7280; font-size: 0.95rem; margin: 0;">Conoce a otros compañeros que también buscan un hogar.</p>
+            </div>
+
+            <div id="mini-catalogo" class="cards-grid" style="grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contáctanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        "use strict";
+
+        //clase mascota base
+
+        let mascota_base = {
+            id: 0,
+            nombre: "Sin nombre",
+            especie: "Desconocida",
+            raza: "Mestizo",
+            edad: "Desconocida",
+            vacunas: "No",
+            descripcion: "Sin descripción disponible.",
+            hogarTemporal: "Av. Pajaritos 1234, Maipú, Santiago",
+            imagen: "img/perro.png"
+        };
+
+        //instancio o creo multiples objetos mascota_base iguales a los que estan en adopcion.html, teniendo en cuenta que en un caso real estos serian compartidos por adopcion y detallem desde una base de datos
+        let m1 = Object.create(mascota_base); m1.id = 1; m1.nombre = "Max"; m1.especie = "Perro"; m1.raza = "Quiltro"; m1.edad = "2 años"; m1.vacunas = "Si"; m1.descripcion = "Macho, 2 años. Juguetón, enérgico y muy amigable con niños."; m1.hogarTemporal = "Av. Pajaritos 1420, Maipú, Santiago"; m1.imagen = "img/perro.png";
+        let m2 = Object.create(mascota_base); m2.id = 2; m2.nombre = "Luna"; m2.especie = "Gato"; m2.raza = "Mestizo"; m2.edad = "1 año"; m2.vacunas = "Si"; m2.descripcion = "Hembra, 1 año. Tranquila, cariñosa y acostumbrada a vivir en departamento."; m2.hogarTemporal = "Av. Italia 850, Providencia, Santiago"; m2.imagen = "img/gato.png";
+        let m3 = Object.create(mascota_base); m3.id = 3; m3.nombre = "Rocky"; m3.especie = "Perro"; m3.raza = "Doberman"; m3.edad = "3 años"; m3.vacunas = "Parcialmente"; m3.descripcion = "Macho, 3 años. Protector, obediente y le encanta salir a pasear al parque."; m3.hogarTemporal = "Gran Avenida 4500, San Miguel, Santiago"; m3.imagen = "img/perro.png";
+        let m4 = Object.create(mascota_base); m4.id = 4; m4.nombre = "Mimi"; m4.especie = "Gato"; m4.raza = "Siames"; m4.edad = "6 meses"; m4.vacunas = "Si"; m4.descripcion = "Hembra, 6 meses. Muy curiosa, sociable y le encanta jugar con pelotas de lana."; m4.hogarTemporal = "Av. Grecia 2100, Ñuñoa, Santiago"; m4.imagen = "img/gato.png";
+        let m5 = Object.create(mascota_base); m5.id = 5; m5.nombre = "Oliver"; m5.especie = "Gato"; m5.raza = "Mestizo"; m5.edad = "2 años"; m5.vacunas = "No"; m5.descripcion = "Macho, 2 años. Independiente, cariñoso a sus tiempos y esterilizado."; m5.hogarTemporal = "Av. Vicuña Mackenna 3200, La Florida, Santiago"; m5.imagen = "img/gato.png";
+        let m6 = Object.create(mascota_base); m6.id = 6; m6.nombre = "Toby"; m6.especie = "Perro"; m6.raza = "Golden Retriever"; m6.edad = "4 años"; m6.vacunas = "Si"; m6.descripcion = "Macho, 4 años. Noble, ideal para familias senior o casas amplias."; m6.hogarTemporal = "Camino El Venado 500, Huechuraba, Santiago"; m6.imagen = "img/perro.png";
+        let m7 = Object.create(mascota_base); m7.id = 7; m7.nombre = "Bella"; m7.especie = "Perro"; m7.raza = "Quiltro"; m7.edad = "1.5 años"; m7.vacunas = "Parcialmente"; m7.descripcion = "Hembra, 1.5 años. Activa, sociable con otros perros y muy cariñosa."; m7.hogarTemporal = "Av. Concha y Toro 1100, Puente Alto, Santiago"; m7.imagen = "img/perro.png";
+        let m8 = Object.create(mascota_base); m8.id = 8; m8.nombre = "Simba"; m8.especie = "Gato"; m8.raza = "Angora"; m8.edad = "8 meses"; m8.vacunas = "Si"; m8.descripcion = "Macho, 8 meses. Dulce, ronroneador y en busca de un hogar tranquilo."; m8.hogarTemporal = "Av. Las Condes 9800, Las Condes, Santiago"; m8.imagen = "img/gato.png";
+
+
+        //creo una lista catalogo
+        let catalogoMascotas = [m1, m2, m3, m4, m5, m6, m7, m8];
+
+        //funcion para cambiar de imagen, actualmente todas las imagenes son la mismas dependiendo si es perro o gato
+        function cambiarImagenPrincipal(src) {
+            document.getElementById("det-imagen").src = src;
+        }
+
+        //ver detalle
+        function verDetalleMascota(id) {
+            let seleccionada = catalogoMascotas.find(function(m) {
+                return m.id === id;
+            });
+
+            if (seleccionada) {
+                let datos = {
+                    id: seleccionada.id,
+                    nombre: seleccionada.nombre,
+                    especie: seleccionada.especie,
+                    raza: seleccionada.raza,
+                    edad: seleccionada.edad,
+                    vacunas: seleccionada.vacunas,
+                    descripcion: seleccionada.descripcion,
+                    hogarTemporal: seleccionada.hogarTemporal,
+                    imagen: seleccionada.imagen
+                };
+                localStorage.setItem("mascotaSeleccionada", JSON.stringify(datos));
+                window.location.href = "./detallem.html";
+            }
+        }
+
+        //se usa la memoria local del navegador para obtener el texto guardado bajo mascotaSeleccionada como JSON
+        let datosGuardados = JSON.parse(localStorage.getItem("mascotaSeleccionada"));
+        let idActual = 0;
+
+        //obitene datos de la mascota correspondiente si ya existe en la memoria local del navegador y los carga en la interfaz
+        if (datosGuardados) {
+            let mascotaActual = Object.create(mascota_base);
+            mascotaActual.id = datosGuardados.id;
+            mascotaActual.nombre = datosGuardados.nombre;
+            mascotaActual.especie = datosGuardados.especie;
+            mascotaActual.raza = datosGuardados.raza;
+            mascotaActual.edad = datosGuardados.edad;
+            mascotaActual.vacunas = datosGuardados.vacunas;
+            mascotaActual.descripcion = datosGuardados.descripcion;
+            mascotaActual.hogarTemporal = datosGuardados.hogarTemporal;
+            mascotaActual.imagen = datosGuardados.imagen;
+
+            idActual = mascotaActual.id;
+
+            document.getElementById("det-nombre").textContent = mascotaActual.nombre;
+            document.getElementById("det-imagen").src = mascotaActual.imagen;
+            document.getElementById("det-especie").textContent = mascotaActual.especie;
+            document.getElementById("det-raza").textContent = mascotaActual.raza;
+            document.getElementById("det-edad").textContent = mascotaActual.edad;
+            document.getElementById("det-vacunas").textContent = mascotaActual.vacunas;
+            document.getElementById("det-hogar").textContent = mascotaActual.hogarTemporal;
+            document.getElementById("det-descripcion").textContent = mascotaActual.descripcion;
+
+            let imgMock = mascotaActual.imagen;
+            document.getElementById("thumb-principal").src = imgMock;
+            document.getElementById("thumb-2").src = imgMock;
+            document.getElementById("thumb-3").src = imgMock;
+            document.getElementById("thumb-4").src = imgMock;
+        }
+
+        //pone a 3 mascotas de la lista al azar en Otras mascotas buscando hogar
+        let disponibles = catalogoMascotas.filter(function(m) {
+            return m.id !== idActual;
+        });
+
+        disponibles.sort(function() {
+            return 0.5 - Math.random();
+        });
+
+
+        let seleccionAzar = disponibles.slice(0, 3);
+        let contenedorMini = document.getElementById("mini-catalogo");
+
+        seleccionAzar.forEach(function(m) {
+            let cardHtml = `
+                <div class="help-card" style="margin: 0;">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">${m.nombre}</div>
+                        <img src="${m.imagen}" alt="${m.nombre}">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body" style="padding: 10px; text-align: center;">
+                        <button onclick="verDetalleMascota(${m.id})" class="btn-estandar" style="padding: 6px 12px; font-size: 0.85rem; width: 100%;">Ver detalle</button>
+                    </div>
+                </div>
+            `;
+            contenedorMini.innerHTML += cardHtml;
+        });
+
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

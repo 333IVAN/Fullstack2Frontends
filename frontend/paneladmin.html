@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Panel Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-panel-admin">
+        <aside class="menu-lateral">
+            <a href="./index.html" class="menu-lateral-logo">
+                <img src="img/logo2.png" alt="Logo Kiwi Ayuda">
+                <span>Kiwi Ayuda</span>
+            </a>
+
+            <ul class="menu-lateral-lista">
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Solicitudes de donación</a></li>
+                <li><a href="">Solicitudes de adopción</a></li>
+                <li><a href="">Solicitudes de contacto</a></li>
+                <li><a href="">Inventario</a></li>
+                <li><a href="">Reportes</a></li>
+                <li><a href="">Usuarios</a></li>
+                <li><a href="adminmascotas.html">Mascotas</a></li>
+            </ul>
+
+            <div class="menu-lateral-espaciador">
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Configuración</a></li>
+                    <li><a href="">Ayuda</a></li>
+                </ul>
+
+                <hr class="menu-lateral-linea-punteada">
+
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Perfil</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="contenido-panel-admin">
+            <h1 class="titulo-saludo-admin">¡Hola administrador!</h1>
+            <div class="bloque-contenido-vacio"></div>
+        </main>
+    </div>
+    <script>
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

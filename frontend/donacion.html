@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Donación de Insumos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-donacion">
+         <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>Donación de insumos</h1>
+                <p>Realiza una donación económica para ayudarnos a financiar nuestros programas de rescate, alimentación y cuidado veterinario.</p>
+            </div>
+        </section>
+
+        <div class="formulario-card">
+            <h1 style="font-size: 1.7rem; color: #793881; font-weight: bold; margin-bottom: 5px;">Solicitud de Donación de Insumos</h1>
+            <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 20px;">Completa los datos del formulario para coordinar la recepción de tus insumos.</p>
+
+            <form id="form-solicitud-donacion" onsubmit="procesarDonacionMockup(event)" novalidate>
+                
+                <h2>Datos Personales</h2>
+                
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label for="pnombre">Primer Nombre *</label>
+                        <input type="text" id="pnombre" placeholder="Ej: Juan">
+                    </div>
+                    <div>
+                        <label for="snombre">Segundo Nombre (Opcional)</label>
+                        <input type="text" id="snombre" placeholder="Ej: Carlos">
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label for="appaterno">Apellido Paterno *</label>
+                        <input type="text" id="appaterno" placeholder="Ej: Pérez">
+                    </div>
+                    <div>
+                        <label for="apmaterno">Apellido Materno (Opcional)</label>
+                        <input type="text" id="apmaterno" placeholder="Ej: González">
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label for="rut">RUT (Con guion y sin puntos) *</label>
+                        <input type="text" id="rut" placeholder="12345678-K">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono (Opcional)</label>
+                        <input type="tel" id="telefono" placeholder="+56912345678">
+                    </div>
+                </div>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" placeholder="correo@ejemplo.com">
+
+                <h2>Detalles del Insumo</h2>
+
+                <label for="insumo-id">Tipo de Insumo *</label>
+                <select id="insumo-id">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="1">Alimento (Kg)</option>
+                    <option value="2">Medicina / Fármacos</option>
+                    <option value="3">Juguetes / Mantas / Accesorios</option>
+                    <option value="4">Artículos de Aseo y Limpieza</option>
+                </select>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label for="cantidad">Cantidad *</label>
+                        <input type="number" id="cantidad" placeholder="Ej: 10">
+                    </div>
+                    <div>
+                        <label for="fecha-disponible">Fecha Disponible para Entrega *</label>
+                        <input type="date" id="fecha-disponible">
+                    </div>
+                </div>
+
+                <label for="descripcion">Descripción Adicional *</label>
+                <textarea id="descripcion" rows="3" placeholder="Indica detalles del producto (marca, estado del empaque, etc.)"></textarea>
+
+                <div class="campo-checkbox">
+                    <input type="checkbox" id="terminos" style="width: auto; margin: 0;">
+                    <label for="terminos" style="margin: 0;">
+                        Acepto los términos y condiciones para la entrega de donaciones a la fundación Kiwi Ayuda.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-estandar">Enviar Donación</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        //validación por medio de funciones de JavaScript
+        //primero ingreso los metodos que entregó en los anuncios de Blackboard
+        function validar_run(rutCompleto) {
+            // 1. Limpiar el RUT de puntos y espacios
+            rutCompleto = rutCompleto.replace(/^0+|[\s.]+/g, '');
+
+            // 2. Verificar que tenga el formato básico con expresión regular
+            if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+
+            // 3. Separar el número del dígito verificador
+            const tmp = rutCompleto.split('-');
+            let digv = tmp[1];
+            const rut = tmp[0];
+
+            // Pasar a minúscula si el dígito verificador es 'K'
+            if (digv == 'K') digv = 'k';
+
+            // 4. Calcular el dígito verificador esperado
+            return calcular_dv(rut) == digv;
+        }
+
+        function calcular_dv(T) {
+            let suma = 0;
+            let multiplicador = 2;
+
+            // Recorrer los números de derecha a izquierda
+            for (let i = 1; i <= T.length; i++) {
+                suma += parseInt(T.charAt(T.length - i)) * multiplicador;
+                multiplicador = multiplicador < 7 ? multiplicador + 1 : 2;
+            }
+
+            const resto = suma % 11;
+            const dvCalculado = 11 - resto;
+
+            if (dvCalculado == 11) return '0';
+            if (dvCalculado == 10) return 'k';
+            return dvCalculado.toString();
+        }
+
+        let registroDonacionExitoso = false; //flag de estado
+
+        function procesarDonacionMockup(event) {
+            event.preventDefault(); 
+
+            const campoPNombre = document.getElementById('pnombre');
+            const pnombre = campoPNombre.value.trim();
+            if (pnombre === '') {
+                alert('Por favor, ingresa tu primer nombre.');
+                campoPNombre.focus();
+                return;
+            }
+            if (pnombre.length > 50) {
+                alert('El primer nombre no puede tener más de 50 caracteres.');
+                campoPNombre.focus();
+                return;
+            }
+
+            const campoAppaterno = document.getElementById('appaterno');
+            const appaterno = campoAppaterno.value.trim();
+            if (appaterno === '') {
+                alert('Por favor, ingresa tu apellido paterno.');
+                campoAppaterno.focus();
+                return;
+            }
+            if (appaterno.length > 100) {
+                alert('El apellido paterno no puede tener más de 100 caracteres.');
+                campoAppaterno.focus();
+                return;
+            }
+
+            const campoRut = document.getElementById('rut');
+            const rutInput = campoRut.value.trim(); //toma el rut ingresado y lo convierte en const(variable incambiable) para luego enviarlo al metodo validar_run
+            if (!validar_run(rutInput)) { //valida el rut con el metodo anterior y si es invalido, borra el texto ingresado y lleva el cursor/mouse/como le quiera llamar al campo rut automaticamente
+                alert('El RUT ingresado no es válido. Por favor, asegúrate de ingresarlo con guion (Ej: 12345678-K).');
+                campoRut.value = ''; 
+                campoRut.focus();   
+                registroDonacionExitoso = false;
+                return;
+            }
+
+            const campoEmail = document.getElementById('email');
+            const email = campoEmail.value.trim();
+            if (email === '') {
+                alert('Por favor, ingresa tu correo electrónico.');
+                campoEmail.focus();
+                return;
+            }
+            if (email.length > 100) {
+                alert('El correo electrónico no puede tener más de 100 caracteres.');
+                campoEmail.focus();
+                return;
+            }
+
+            const esDuoc = email.endsWith('@duoc.cl');
+            const esProfe = email.endsWith('@profesor.duoc.cl');
+            const esGmail = email.endsWith('@gmail.com');
+
+            if (!esDuoc && !esProfe && !esGmail) {
+                alert('El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com');
+                campoEmail.focus();
+                return;
+            }
+
+            const campoInsumo = document.getElementById('insumo-id');
+            if (campoInsumo.value === '') {
+                alert('Por favor, selecciona un tipo de insumo.');
+                campoInsumo.focus();
+                return;
+            }
+
+            const campoCantidad = document.getElementById('cantidad');
+            if (campoCantidad.value.trim() === '' || Number(campoCantidad.value) <= 0) {
+                alert('Por favor, ingresa una cantidad válida.');
+                campoCantidad.focus();
+                return;
+            }
+
+            const campoFecha = document.getElementById('fecha-disponible');
+            if (campoFecha.value === '') {
+                alert('Por favor, selecciona la fecha disponible para la entrega.');
+                campoFecha.focus();
+                return;
+            }
+
+            const campoDescripcion = document.getElementById('descripcion');
+            if (campoDescripcion.value.trim() === '') {
+                alert('Por favor, ingresa una descripción adicional del insumo.');
+                campoDescripcion.focus();
+                return;
+            }
+
+            const campoTerminos = document.getElementById('terminos');
+            if (!campoTerminos.checked) {
+                alert('Debes aceptar los términos y condiciones para la entrega de donaciones.');
+                campoTerminos.focus();
+                return;
+            }
+
+            const datosDonacion = {
+                idDonacion: Math.floor(Math.random() * 10000),
+                pnombre: pnombre,
+                snombre: document.getElementById('snombre').value,
+                appaterno: appaterno,
+                apmaterno: document.getElementById('apmaterno').value,
+                rut: rutInput,
+                telefono: document.getElementById('telefono').value,
+                email: email,
+                insumoId: campoInsumo.value,
+                cantidad: campoCantidad.value,
+                fechaDisponible: campoFecha.value,
+                descripcion: campoDescripcion.value
+            };
+
+            registroDonacionExitoso = true; //la flag cambia a verdadero
+
+            if (registroDonacionExitoso) {
+                console.log("Flag [registroDonacionExitoso]:", registroDonacionExitoso);
+                console.log("Datos de la donación registrada (Mockup):", datosDonacion);
+                alert(`¡Gracias ${datosDonacion.pnombre}! Tu donación ha sido registrada exitosamente.`);
+                document.getElementById('form-solicitud-donacion').reset();
+            } else {
+                alert("Ocurrió un error al intentar registrar la donación. Inténtalo nuevamente.");
+            }
+        }
+
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

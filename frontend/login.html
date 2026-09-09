@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Iniciar Sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-login">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>Iniciar Sesión</h1>
+                <p>Ingresa a tu cuenta para administrar tus solicitudes, donaciones y seguir apoyando la causa animal.</p>
+            </div>
+        </section>
+
+        <div class="formulario-card">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="img/logo2.png" alt="Kiwi Ayuda" style="max-width: 90px; height: auto; display: block; margin: 0 auto 10px auto;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0;">Kiwi Ayuda</h2>
+            </div>
+
+            <h1 style="font-size: 1.5rem; color: #333; font-weight: bold; margin-bottom: 5px; text-align: center;">Iniciar sesión</h1>
+            <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 25px; text-align: center;">Ingresa tu correo y contraseña para continuar.</p>
+
+            <form id="form-login" onsubmit="procesarLoginMockup(event)">
+                
+                <label for="credencial">Correo electrónico *</label>
+                <input type="text" id="credencial" placeholder="correo@ejemplo.com">
+
+                <label for="password">Contraseña *</label>
+                <input type="password" id="password" placeholder="••••••••"> 
+
+                <div class="campo-checkbox" style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="./registro.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">¿No tienes cuenta? Regístrate aquí.</a>
+                </div>
+
+                <button type="submit" class="btn-estandar" style="margin-top: 15px;">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function procesarLoginMockup(event) {
+        event.preventDefault();
+
+        const campoCorreo = document.getElementById('credencial');
+        const campoPassword = document.getElementById('password');
+
+        const correo = campoCorreo.value.trim();
+        const password = campoPassword.value;
+
+        if (correo === '') {
+            alert('Por favor, ingresa tu correo electrónico.');
+            campoCorreo.focus();
+            return;
+        }
+
+        if (correo.length > 100) {
+            alert('El correo no puede tener más de 100 caracteres.');
+            campoCorreo.focus();
+            return;
+        }
+
+        const esDuoc = correo.endsWith('@duoc.cl');
+        const esProfe = correo.endsWith('@profesor.duoc.cl');
+        const esGmail = correo.endsWith('@gmail.com');
+
+        if (!esDuoc && !esProfe && !esGmail) {
+            alert('El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com');
+            campoCorreo.focus();
+            return;
+        }
+
+        if (password === '') {
+            alert('Por favor, ingresa tu contraseña.');
+            campoPassword.focus();
+            return;
+        }
+
+        if (password.length < 4 || password.length > 10) {
+            alert('La contraseña debe tener entre 4 y 10 caracteres.');
+            campoPassword.focus();
+            return;
+        }
+
+        //validacion de admin, a futuro esto se haria con un rol asignado a cada usuario en base de datos
+        if (correo === 'admin@gmail.com' && password === 'contrasena') {
+            const usuarioAdmin = {
+                correo: correo
+            };
+            localStorage.setItem('usuarioSesion', JSON.stringify(usuarioAdmin));
+            alert('Sesión iniciada como administrador');
+            window.location.href = './index.html';
+        } else {
+            const usuarioNormal = {
+                correo: correo
+            };
+            localStorage.setItem('usuarioSesion', JSON.stringify(usuarioNormal));
+            alert('Inicio de sesión exitoso');
+            window.location.href = './index.html';
+        }
+    }
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Adopción - Kiwi Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-adopcion">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>Catálogo de Adopción</h1>
+                <p>Encuentra a tu nuevo compañero de vida y dale una segunda oportunidad a nuestras mascotas rescatadas.</p>
+            </div>
+        </section>
+
+        <main id="catalogo">
+            <div style="text-align: center;">
+                <h1 style="font-size: 1.8rem; color: #793881; font-weight: bold; margin-bottom: 5px;">Mascotas Buscando Hogar</h1>
+                <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 20px;">Haz clic en "Ver detalle" para conocer la historia y requerimientos de cada uno.</p>
+            </div>
+
+            <div class="cards-grid" style="grid-template-columns: repeat(4, 1fr);">
+                
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Max</div>
+                        <img src="img/perro.png" alt="Perro en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Macho, 2 años. Juguetón, enérgico y muy amigable con niños.</p>
+                        <button onclick="verDetalleMascota(1)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Luna</div>
+                        <img src="img/gato.png" alt="Gato en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Hembra, 1 año. Tranquila, cariñosa y acostumbrada a departamento.</p>
+                        <button onclick="verDetalleMascota(2)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Rocky</div>
+                        <img src="img/perro.png" alt="Perro en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Macho, 3 años. Protector, obediente y le encanta salir a pasear.</p>
+                        <button onclick="verDetalleMascota(3)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Mimi</div>
+                        <img src="img/gato.png" alt="Gato en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Hembra, 6 meses. Muy curiosa, sociable y le encanta jugar.</p>
+                        <button onclick="verDetalleMascota(4)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Oliver</div>
+                        <img src="img/gato.png" alt="Gato en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Macho, 2 años. Independiente, cariñoso a sus tiempos y esterilizado.</p>
+                        <button onclick="verDetalleMascota(5)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Toby</div>
+                        <img src="img/perro.png" alt="Perro en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Macho, 4 años. Noble, ideal para familias senior o casas amplias.</p>
+                        <button onclick="verDetalleMascota(6)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Bella</div>
+                        <img src="img/perro.png" alt="Perro en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Hembra, 1.5 años. Activa, sociable con otros perros y juguetona.</p>
+                        <button onclick="verDetalleMascota(7)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Simba</div>
+                        <img src="img/gato.png" alt="Gato en adopción">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Macho, 8 meses. Dulce, ronroneador y en busca de un hogar tranquilo.</p>
+                        <button onclick="verDetalleMascota(8)" class="btn-estandar">Ver detalle</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contáctanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        "use strict";
+
+        let mascota_base = {
+            id: 0,
+            nombre: "Sin nombre",
+            especie: "Desconocida",
+            raza: "Mestizo",
+            edad: "Desconocida",
+            vacunas: "No",
+            descripcion: "Sin descripción disponible.",
+            hogarTemporal: "Av. Pajaritos 1234, Maipú, Santiago",
+            imagen: "img/perro.png"
+        };
+
+        let mascota1 = Object.create(mascota_base);
+        mascota1.id = 1;
+        mascota1.nombre = "Max";
+        mascota1.especie = "Perro";
+        mascota1.raza = "Quiltro";
+        mascota1.edad = "2 años";
+        mascota1.vacunas = "Si";
+        mascota1.descripcion = "Macho, 2 años. Juguetón, enérgico y muy amigable con niños.";
+        mascota1.hogarTemporal = "Av. Pajaritos 1420, Maipú, Santiago";
+        mascota1.imagen = "img/perro.png";
+
+        let mascota2 = Object.create(mascota_base);
+        mascota2.id = 2;
+        mascota2.nombre = "Luna";
+        mascota2.especie = "Gato";
+        mascota2.raza = "Mestizo";
+        mascota2.edad = "1 año";
+        mascota2.vacunas = "Si";
+        mascota2.descripcion = "Hembra, 1 año. Tranquila, cariñosa y acostumbrada a vivir en departamento.";
+        mascota2.hogarTemporal = "Av. Italia 850, Providencia, Santiago";
+        mascota2.imagen = "img/gato.png";
+
+        let mascota3 = Object.create(mascota_base);
+        mascota3.id = 3;
+        mascota3.nombre = "Rocky";
+        mascota3.especie = "Perro";
+        mascota3.raza = "Doberman";
+        mascota3.edad = "3 años";
+        mascota3.vacunas = "Parcialmente";
+        mascota3.descripcion = "Macho, 3 años. Protector, obediente y le encanta salir a pasear al parque.";
+        mascota3.hogarTemporal = "Gran Avenida 4500, San Miguel, Santiago";
+        mascota3.imagen = "img/perro.png";
+
+        let mascota4 = Object.create(mascota_base);
+        mascota4.id = 4;
+        mascota4.nombre = "Mimi";
+        mascota4.especie = "Gato";
+        mascota4.raza = "Siames";
+        mascota4.edad = "6 meses";
+        mascota4.vacunas = "Si";
+        mascota4.descripcion = "Hembra, 6 meses. Muy curiosa, sociable y le encanta jugar con pelotas de lana.";
+        mascota4.hogarTemporal = "Av. Grecia 2100, Ñuñoa, Santiago";
+        mascota4.imagen = "img/gato.png";
+
+        let mascota5 = Object.create(mascota_base);
+        mascota5.id = 5;
+        mascota5.nombre = "Oliver";
+        mascota5.especie = "Gato";
+        mascota5.raza = "Mestizo";
+        mascota5.edad = "2 años";
+        mascota5.vacunas = "No";
+        mascota5.descripcion = "Macho, 2 años. Independiente, cariñoso a sus tiempos y esterilizado.";
+        mascota5.hogarTemporal = "Av. Vicuña Mackenna 3200, La Florida, Santiago";
+        mascota5.imagen = "img/gato.png";
+
+        let mascota6 = Object.create(mascota_base);
+        mascota6.id = 6;
+        mascota6.nombre = "Toby";
+        mascota6.especie = "Perro";
+        mascota6.raza = "Golden Retriever";
+        mascota6.edad = "4 años";
+        mascota6.vacunas = "Si";
+        mascota6.descripcion = "Macho, 4 años. Noble, ideal para familias senior o casas amplias.";
+        mascota6.hogarTemporal = "Camino El Venado 500, Huechuraba, Santiago";
+        mascota6.imagen = "img/perro.png";
+
+        let mascota7 = Object.create(mascota_base);
+        mascota7.id = 7;
+        mascota7.nombre = "Bella";
+        mascota7.especie = "Perro";
+        mascota7.raza = "Quiltro";
+        mascota7.edad = "1.5 años";
+        mascota7.vacunas = "Parcialmente";
+        mascota7.descripcion = "Hembra, 1.5 años. Activa, sociable con otros perros y muy cariñosa.";
+        mascota7.hogarTemporal = "Av. Concha y Toro 1100, Puente Alto, Santiago";
+        mascota7.imagen = "img/perro.png";
+
+        let mascota8 = Object.create(mascota_base);
+        mascota8.id = 8;
+        mascota8.nombre = "Simba";
+        mascota8.especie = "Gato";
+        mascota8.raza = "Angora";
+        mascota8.edad = "8 meses";
+        mascota8.vacunas = "Si";
+        mascota8.descripcion = "Macho, 8 meses. Dulce, ronroneador y en busca de un hogar tranquilo.";
+        mascota8.hogarTemporal = "Av. Las Condes 9800, Las Condes, Santiago";
+        mascota8.imagen = "img/gato.png";
+
+        let catalogoMascotas = [mascota1, mascota2, mascota3, mascota4, mascota5, mascota6, mascota7, mascota8];
+
+        function verDetalleMascota(id) {
+            let seleccionada = catalogoMascotas.find(function(m) {
+                return m.id === id;
+            });
+
+            if (seleccionada) {
+                let datos = {
+                    id: seleccionada.id,
+                    nombre: seleccionada.nombre,
+                    especie: seleccionada.especie,
+                    raza: seleccionada.raza,
+                    edad: seleccionada.edad,
+                    vacunas: seleccionada.vacunas,
+                    descripcion: seleccionada.descripcion,
+                    hogarTemporal: seleccionada.hogarTemporal,
+                    imagen: seleccionada.imagen
+                };
+                localStorage.setItem("mascotaSeleccionada", JSON.stringify(datos));
+                window.location.href = "./detallem.html";
+            }
+        }
+
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

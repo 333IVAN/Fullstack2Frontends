@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Usuarios Registrados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        /* Ajuste de ancho para el panel de usuarios */
+        .contenido-panel-admin {
+            max-width: 1400px; /* Incrementado para dar más espacio a la tabla */
+            width: 95%;
+        }
+        
+        .bloque-contenido-vacio {
+            overflow-x: auto; /* Permite desplazamiento horizontal en pantallas pequeñas si fuera necesario */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-panel-admin">
+        <aside class="menu-lateral">
+            <a href="./index.html" class="menu-lateral-logo">
+                <img src="img/logo2.png" alt="Logo Kiwi Ayuda">
+                <span>Kiwi Ayuda</span>
+            </a>
+
+            <ul class="menu-lateral-lista">
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Solicitudes de donación</a></li>
+                <li><a href="">Solicitudes de adopción</a></li>
+                <li><a href="">Solicitudes de contacto</a></li>
+                <li><a href="">Inventario</a></li>
+                <li><a href="">Reportes</a></li>
+                <li><a href="./adminusuarios.html">Usuarios</a></li>
+                <li><a href="./adminmascotas.html">Mascotas</a></li>
+            </ul>
+
+            <div class="menu-lateral-espaciador">
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Configuración</a></li>
+                    <li><a href="">Buscar</a></li>
+                    <li><a href="">Ayuda</a></li>
+                </ul>
+
+                <hr class="menu-lateral-linea-punteada">
+
+                <ul class="menu-lateral-lista">
+                    <li><a href="">Perfil</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="contenido-panel-admin">
+            <h1 class="titulo-saludo-admin">Usuarios registrados</h1>
+            
+            <div style="margin-bottom: 20px; text-align: right;">
+                <a href="./agregarusuario.html" class="btn-estandar" style="text-decoration: none; display: inline-block; padding: 10px 20px;">+ Agregar usuario</a>
+            </div>
+
+            <div class="bloque-contenido-vacio">
+                <table border="1" style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f3e8ff; color: #793881;">
+                            <th style="padding: 10px;">ID</th>
+                            <th style="padding: 10px;">RUT</th>
+                            <th style="padding: 10px;">Nombre Completo</th>
+                            <th style="padding: 10px;">Fecha Nacimiento</th>
+                            <th style="padding: 10px;">Teléfono</th>
+                            <th style="padding: 10px;">Correo</th>
+                            <th style="padding: 10px;">Comuna</th>
+                            <th style="padding: 10px;">Dirección</th>
+                            <th style="padding: 10px;">Rol</th>
+                            <th style="padding: 10px; text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-usuarios-body">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        "use strict";
+
+        const comunas = ["Maipú", "Santiago", "Providencia", "La Florida", "Las Condes"];
+
+        let usuario_base = {
+            idUsuario: 1000,
+            pnombre: "KIWIAYUDA",
+            snombre: "ADMIN",
+            appaterno: "SISTEMA",
+            apmaterno: "DEFAULT",
+            rut: "11111111-1",
+            fechaNacimiento: "1990-01-01",
+            telefono: "+56977777777",
+            email: "admin@gmail.com",
+            comuna: comunas[0],
+            direccion: "Av. Pajaritos 1234",
+            rol: "Administrador",
+            password: "contrasena"
+        };
+
+        let catalogoUsuarios = [usuario_base];
+
+        let tbody = document.getElementById("tabla-usuarios-body");
+
+        catalogoUsuarios.forEach(function(u) {
+            let nombreCompleto = `${u.pnombre} ${u.snombre} ${u.appaterno} ${u.apmaterno}`.trim();
+            let fila = `
+                <tr>
+                    <td style="padding: 10px;">${u.idUsuario}</td>
+                    <td style="padding: 10px;">${u.rut}</td>
+                    <td style="padding: 10px;">${nombreCompleto}</td>
+                    <td style="padding: 10px;">${u.fechaNacimiento}</td>
+                    <td style="padding: 10px;">${u.telefono}</td>
+                    <td style="padding: 10px;">${u.email}</td>
+                    <td style="padding: 10px;">${u.comuna}</td>
+                    <td style="padding: 10px;">${u.direccion}</td>
+                    <td style="padding: 10px;">${u.rol}</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="./editarusuario.html?id=${u.idUsuario}" class="btn-estandar" style="text-decoration: none; padding: 6px 12px; font-size: 0.85rem; display: inline-block;">Editar</a>
+                    </td>
+                </tr>
+            `;
+            tbody.innerHTML += fila;
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos - Kiwi Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-contacto">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>Contáctanos</h1>
+                <p>Ponte en contacto directo con nosotros. Estamos aquí para resolver tus dudas.</p>
+            </div>
+        </section>
+
+        <main>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p style="color: #6b7280; font-size: 1rem; margin: 5px 0;"><strong>Número de contacto:</strong> +56 9 1234 5678</p>
+                <p style="color: #6b7280; font-size: 1rem; margin: 5px 0;"><strong>Correo de contacto:</strong> contactokiwi@kiwiayuda.cl</p>
+            </div>
+
+            <form id="form-contacto" class="formulario-card" onsubmit="procesarContactoMockup(event)">
+                <h2 style="color: #793881; text-align: center; font-size: 1.5rem; margin-top: 0; margin-bottom: 25px; font-weight: 700;">Formulario de contacto directo</h2>
+
+                <label for="nombre-completo" style="color: #793881; font-weight: 600;">Nombre completo</label>
+                <input type="text" id="nombre-completo" placeholder="Tu nombre y apellido">
+
+                <label for="correo-contacto" style="color: #793881; font-weight: 600;">Correo</label>
+                <input type="text" id="correo-contacto" placeholder="correo@ejemplo.com">
+
+                <label for="contenido-mensaje" style="color: #793881; font-weight: 600;">Contenido</label>
+                <textarea id="contenido-mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." style="resize: none;"></textarea>
+
+                <button type="submit" class="btn-estandar">Enviar mensaje</button>
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contáctanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        //casi la misma validacion que en login
+        function procesarContactoMockup(event) {
+            event.preventDefault();
+
+            const campoNombre = document.getElementById('nombre-completo');
+            const campoCorreo = document.getElementById('correo-contacto');
+            const campoMensaje = document.getElementById('contenido-mensaje');
+
+            const nombre = campoNombre.value.trim();
+            const correo = campoCorreo.value.trim();
+            const mensaje = campoMensaje.value.trim();
+
+            if (nombre === '') {
+                alert('Por favor, ingresa tu nombre completo.');
+                campoNombre.focus();
+                return;
+            }
+
+            if (nombre.length > 100) {
+                alert('El nombre no puede tener más de 100 caracteres.');
+                campoNombre.focus();
+                return;
+            }
+
+            if (correo === '') {
+                alert('Por favor, ingresa tu correo electrónico.');
+                campoCorreo.focus();
+                return;
+            }
+
+            if (correo.length > 100) {
+                alert('El correo no puede tener más de 100 caracteres.');
+                campoCorreo.focus();
+                return;
+            }
+
+            if (mensaje.length > 500) {
+                alert('El mensaje no puede tener más de 500 caracteres.');
+                campoMensaje.focus();
+                return;
+            }
+
+            const esDuoc = correo.endsWith('@duoc.cl');
+            const esProfe = correo.endsWith('@profesor.duoc.cl');
+            const esGmail = correo.endsWith('@gmail.com');
+
+            if (!esDuoc && !esProfe && !esGmail) {
+                alert('El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com');
+                campoCorreo.focus();
+                return;
+            }
+
+            if (mensaje === '') {
+                alert('Por favor, ingresa el contenido de tu mensaje.');
+                campoMensaje.focus();
+                return;
+            }
+
+            alert('Mensaje enviado con éxito');
+            document.getElementById('form-contacto').reset();
+        }
+
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+</body>
+</html>

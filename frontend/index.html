@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Ayuda - Tu Portal de Apoyo Animal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <nav>
+        <a href="./index.html" class="logo-container">
+            <img src="img/logo2.png" alt="Logo Kiwi Ayuda" class="logo-img">
+            <span>Kiwi Ayuda</span>
+        </a>
+        <ul>    
+            <li><a href="./index.html">Principal</a></li>   
+            <li><a href="./donacion.html">Donar</a></li> 
+            <li><a href="./adopcion.html">Adoptar</a></li> 
+            <li><a href="./blogs.html">Artículos</a></li> 
+            <li><a href="./contacto.html">Contáctanos</a></li> 
+            <li id="nav-paneladmin" style="display: none;"><a href="./paneladmin.html">Panel Admin</a></li>
+            <li id="nav-logout" style="display: none;"><a href="#" onclick="cerrarSesion(event)">Cerrar Sesión</a></li>
+            <li id="nav-login"><a href="./login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div id="vista-home">
+        <section class="banner-index">
+            <div class="contenido-banner">
+                <h1>¿Cómo puedes ayudar?</h1>
+                <p>Únete a nuestra causa a través de alguna de estas acciones, y estarás ayudando directamente a mejorar la calidad de vida de nuestros animales rescatados.</p>
+            </div>
+        </section>
+
+        <main id="ayudanos">
+            <div style="text-align: center;">
+                <h1 style="font-size: 1.8rem; color: #793881; font-weight: bold; margin-bottom: 5px;">Formas de Ayudar</h1>
+                <p style="color: #6b7280; font-size: 0.95rem; margin-bottom: 20px;">Selecciona la forma en que deseas contribuir a nuestra misión de proteger y cuidar a los animales en riesgo</p>
+            </div>
+
+            <div class="cards-grid">
+                
+                <div class="help-card" data-page="donaciones">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Donaciones</div>
+                        <img src="https://www.shutterstock.com/image-photo/cute-dachshund-looking-next-food-600nw-2645459067.jpg" alt="Donaciones">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Realiza una donación económica para ayudarnos a financiar nuestros programas de rescate, alimentación y cuidado veterinario.</p>
+                        <a href="./donacion.html" class="btn-estandar">Donar</a>
+                    </div>
+                </div>
+
+                <div class="help-card" data-page="hogar-temporal">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Novedades y blogs</div>
+                        <img src="https://4knines.com/cdn/shop/articles/Important_Trail_Etiquette_You_Should_Know_When_Walking_Your_Dog_-_featured.jpg?v=1548138777" alt="Blogs">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Revisa nuestros artículos para informarte sobre maneras alternativas de ayudar a animales en contextos vulnerables.</p>
+                        <a href="./blogs.html" class="btn-estandar">Ver artículos</a>
+                    </div>
+                </div>
+
+                <div class="help-card" data-page="registro">
+                    <div class="card-image-wrapper">
+                        <div class="card-floating-title">Regístrate</div>
+                        <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/05/Female_Smartphone_Walking_1296x728-header-1296x728.jpg?w=1155&h=1528" alt="Registro">
+                        <div class="card-image-fade"></div>
+                    </div>
+                    <div class="card-body">
+                        <p>Únete a nuestra comunidad, sin compromisos y ¡es gratis!</p>
+                        <a href="./registro.html" class="btn-estandar">Registrarme</a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div style="max-width: 400px;">
+                <h2 style="font-family: 'Comfortaa', cursive; color: #793881; font-size: 1.8rem; margin: 0 0 10px 0;">Kiwi Ayuda</h2>
+                <div class="campo-checkbox" style="margin: 0;">
+                    <a href="./nosotros.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Sobre nosotros.</a>
+                    <a href="./contacto.html" style="color: #793881; font-size: 0.85rem; text-decoration: none;">Contáctanos.</a>
+                </div>
+            </div>
+
+            <div style="max-width: 350px; width: 100%;">
+                <label for="boletin-email" style="display: block; color: #374151; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">Únete a nuestro boletín</label>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!'); this.reset();" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" id="boletin-email" placeholder="correo@ejemplo.com" required style="box-sizing: border-box; width: 100%;">
+                    <button type="submit" class="btn-estandar" style="margin: 0;">Suscribir</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        //inicio y cierre de sesion, guarda usuario admin en memoria local y permite hacer visibles botones Panel admin y Cerrar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('usuarioSesion');
+            if (sesionGuardada) {
+                const usuario = JSON.parse(sesionGuardada);
+                const btnLogin = document.getElementById('nav-login');
+                const btnLogout = document.getElementById('nav-logout');
+                
+                if (btnLogin) btnLogin.style.display = 'none';
+                if (btnLogout) btnLogout.style.display = 'block';
+
+                if (usuario.correo === 'admin@gmail.com') {
+                    const btnAdmin = document.getElementById('nav-paneladmin');
+                    if (btnAdmin) {
+                        btnAdmin.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        function cerrarSesion(event) {
+            event.preventDefault();
+            localStorage.removeItem('usuarioSesion');
+            alert('Has cerrado sesión correctamente.');
+            window.location.href = './index.html';
+        }
+    </script>
+
+</body>
+</html>
