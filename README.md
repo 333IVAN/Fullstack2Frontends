@@ -5,5 +5,6 @@ En esta etapa del proyecto nos enfocamos en front ends y funciones de validació
 # ¡Importante!
 El usuario para testear el funcionamiento de permisos y hacer visible el panel admin guardado en el script es:
 
-Correo: admin@gmail.com
-Contraseña: contrasena
+###Correo: admin@gmail.com
+
+###Contraseña: contrasena
